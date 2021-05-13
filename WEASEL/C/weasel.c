@@ -3,8 +3,7 @@
 #include <time.h>
 #define NUM_OFFSPRINGS 100
 #define MAX_SCORE 28
-
-char target[28] = {"METHINKS IT IS LIKE A WEASEL"};
+#define TARGET "METHINKS IT IS LIKE A WEASEL"
 
 typedef struct child
 {
@@ -28,7 +27,7 @@ void evaluate(child *input)
     int score = 0;
     for(int i = 0; i < 28; i++)
     {
-        if((input->text[i] == target[i]) == 1)
+        if((input->text[i] == TARGET[i]) == 1)
         {
             score++;
         }
