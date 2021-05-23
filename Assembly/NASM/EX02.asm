@@ -5,19 +5,18 @@
 
                 global      _start
 
+                section     .bss
+                num1        resb 8
+                num2        resb 8
+
                 section      .data
                 message1     db      "Digite o primeiro numero: "
                 lenMessage1  equ     $-message1
                 message2     db      "Digite o segundo numero: "
                 lenMessage2  equ     $-message2 
 
-                section     .bss
-                num1        resb 8
-                num2        resb 8
-                values      resb 8
-
                 section     .text
-_start:         mov        rax, SYSCALL_WRITE      
+_start:         mov         rax, SYSCALL_WRITE      
                 mov         rdi, 1                  
                 mov         rsi, message1           
                 mov         rdx, lenMessage1        
@@ -27,7 +26,7 @@ _start:         mov        rax, SYSCALL_WRITE
                 mov         rdi, 0                  
                 mov         rsi, num1  
                 mov         rdx, 8                  
-                syscall                
+                syscall
 
                 mov         rax, SYSCALL_WRITE      
                 mov         rdi, 1                  
@@ -39,39 +38,36 @@ _start:         mov        rax, SYSCALL_WRITE
                 mov         rdi, 0                  
                 mov         rsi, num2  
                 mov         rdx, 8                  
-                syscall           
+                syscall                     
 
-_loopStart:       
+_comparison: 
 
-                mov         rcx,  [num1]
-                mov         rsi,  [num2]
-                cmp         rcx,  rsi
-                jge         _loopEnd
-                mov         [values], rcx
+                mov         rsi,  [num1]
+                mov         rcx,  [num2]
+                cmp         rsi,  rcx
+                jge         _set
+                jl          _swap
 
-_loopBody:       
-                mov         rsi, values
-                mov         rdx, 8       
+
+_set:
+                mov         rsi,  num1
+                jmp         _end
+
+_swap:       
+                mov         rsi,  num2
+                jmp         _end
+
+
+_end:
+                mov         rdx, 8        
                 mov         rax, SYSCALL_WRITE                  
                 mov         rdi, 1                  
-                syscall                             
-                
-                mov         rsi, [num2]
-                mov         rcx, [values]
-                inc         rcx
-                mov         [values], rcx
-                cmp         rcx, rsi
-                jg          _loopEnd
-                jmp         _loopBody
-
-
-                
-_loopEnd:
+                syscall       
 
 
                 mov         rax, SYSCALL_EXIT       
-                xor         rdi, rdi               
+                xor         rdi, rdi                
                 syscall                             
+    
 
-
-;nasm -felf64 EX01.asm && ld EX01.o && ./a.out 
+;nasm -felf64 EX02.asm && ld EX02.o && ./a.out 
