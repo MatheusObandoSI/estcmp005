@@ -19,15 +19,16 @@ content_database('musica', ['Les Paul, guitarrista americano de Jazz, é credita
 
 content_database('fim', ['Espero ter sido util, ate uma proxima vez', 'Espero ter ajudado, tenha um bom dia']).
 
+content_not_founded(['Sinto muito não consegui encontrar nenhum conteudo',
+    'Nao encontrei nenhuma informacao a respeito deste tema',
+    'Ainda nao possuo conteudo sobre este tema']).
+
 get_random_content(List, Content) :- 
     length(List, Length),
     random(0, Length, Index), 
     nth0(Index, List, Content).
 
-find_pattern([], List) :- X = ['Sinto muito não consegui encontrar nenhum conteudo',
-    'Nao encontrei nenhuma informacao a respeito deste tema',
-    'Ainda nao possuo conteudo sobre este tema'],
-    List = X.
+find_pattern([], List) :- content_not_founded(List).
 
 find_pattern([X|Y], List) :-
     (content_database(X, List) -> !; find_pattern(Y, List)).
