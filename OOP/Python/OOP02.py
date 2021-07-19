@@ -1,6 +1,6 @@
 #Associação, Agregação e Composição
 
-class Platform():
+class Platform:
     def __init__(self, name, developer):
         self.__name = name
         self.__developer = developer
@@ -16,7 +16,7 @@ class Platform():
     def info(self):
         print("Platform: {0}\nDeveloper: {1}\n".format(self.__name, self.__developer))
 ###############################################################################################################################################
-class Game():
+class Game:
     def __init__(self, title, genre, developer, price):
         self.__title = title
         self.__genre = genre
@@ -63,7 +63,7 @@ class Game():
         print("Title: {0}\nGenre: {1}\nDeveloper: {2}\nPrice: {3}\n".format(self.__title, self.__genre, self.__developer, self.__price))
         [i.info() for i in self.__platforms]
 ###############################################################################################################################################
-class Cart():
+class Cart:
     def __init__(self, fee = 0):
         self.__fee = fee
         self.__items = []
@@ -76,9 +76,9 @@ class Cart():
             print("{0} -> {1}$".format(i.title, i.price + (i.price*(self.__fee))))
 
     def purchase_items(self):
-        print("Total Price: {0}\n".format(sum((item.price + (item.price*(self.__fee))) for item in self.__items)))
+        print("Total Price: {0}$\n".format(sum((item.price + (item.price*(self.__fee))) for item in self.__items)))
 ###############################################################################################################################################
-class Store():
+class Store:
     def __init__(self, name, fee):
         self.__name = name
         self.__cart = Cart(fee/100)
