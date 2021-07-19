@@ -18,15 +18,15 @@ namespace OOP01
 
         public virtual void Eat()
         {
-            Console.WriteLine(String.Format("{0} is eating", this.Name)); 
+            Console.WriteLine(String.Format("{0} is eating", Name)); 
         }
         public virtual void Sleep()
         {
-            Console.WriteLine(String.Format("{0} is sleeping", this.Name));  
+            Console.WriteLine(String.Format("{0} is sleeping", Name));  
         }
         public virtual void Vocalize()
         {
-            Console.WriteLine(String.Format("{0} is vocalizing", this.Name)); 
+            Console.WriteLine(String.Format("{0} is vocalizing", Name)); 
         }
     }
 }
