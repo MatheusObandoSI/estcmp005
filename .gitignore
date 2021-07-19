@@ -1,6 +1,8 @@
 **/.idea
 **/.vscode
 **/Java/out
+**/bin
+**/obj
 
 *.out
 *.iml
